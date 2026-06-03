@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QITUS™ — Investor Briefing 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F7F6F2;
+    --surface: #FFFFFF;
+    --surface2: #F0EEE9;
+    --border: rgba(0,0,0,0.08);
+    --border-strong: rgba(0,0,0,0.15);
+    --text: #1A1916;
+    --text-muted: #6B6860;
+    --text-faint: #9E9C96;
+    --accent: #D85A30;
+    --accent-light: #FAECE7;
+    --accent-text: #993C1D;
+    --green: #3B6D11;
+    --green-light: #EAF3DE;
+    --amber: #854F0B;
+    --amber-light: #FAEEDA;
+    --blue: #185FA5;
+    --blue-light: #E6F1FB;
+    --radius: 10px;
+    --radius-sm: 6px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* Header */
+  .header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    height: 64px;
+  }
+
+  .logo {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; font-weight: 600; color: #fff;
+    flex-shrink: 0;
+  }
+
+  .header-title { font-size: 16px; font-weight: 500; }
+  .header-sub { font-size: 12px; color: var(--text-muted); }
+
+  .badge {
+    display: inline-flex; align-items: center;
+    font-size: 11px; font-weight: 500;
+    padding: 3px 10px; border-radius: 99px;
+  }
+  .badge-green { background: var(--green-light); color: var(--green); }
+  .badge-amber { background: var(--amber-light); color: var(--amber); }
+  .badge-blue  { background: var(--blue-light);  color: var(--blue);  }
+  .badge-accent{ background: var(--accent-light); color: var(--accent-text); }
+
+  .confidential {
+    margin-left: auto;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--text-faint);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: 1px solid var(--border-strong);
+    padding: 3px 10px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Layout */
+  .container { max-width: 960px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  /* Tabs */
+  .tabs {
+    display: flex; gap: 6px; flex-wrap: wrap;
+    margin-bottom: 28px;
+    background: var(--surface);
+    padding: 6px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    width: fit-content;
+  }
+
+  .tab-btn {
+    background: none; border: none;
+    padding: 7px 18px; border-radius: var(--radius-sm);
+    font-size: 13px; font-family: 'DM Sans', sans-serif;
+    color: var(--text-muted); cursor: pointer;
+    transition: all 0.15s;
+    font-weight: 400;
+  }
+  .tab-btn:hover { color: var(--text); background: var(--surface2); }
+  .tab-btn.active {
+    background: var(--text); color: #fff;
+    font-weight: 500;
+  }
+
+  .section { display: none; animation: fadeIn 0.2s ease; }
+  .section.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* Cards */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    box-shadow: var(--shadow);
+  }
+
+  .card + .card, .card + .grid, .grid + .card { margin-top: 14px; }
+
+  .card-title {
+    font-size: 13px; font-weight: 500; margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  /* Metric grid */
+  .grid { display: grid; gap: 12px; }
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+  .grid-2 { grid-template-columns: 1fr 1fr; }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+  @media (max-width: 640px) {
+    .grid-4 { grid-template-columns: 1fr 1fr; }
+    .grid-2 { grid-template-columns: 1fr; }
+    .header { padding: 0 16px; }
+    .container { padding: 24px 16px 60px; }
+  }
+
+  .metric {
+    background: var(--surface2);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+  }
+  .metric .lbl { font-size: 11px; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.06em; }
+  .metric .val { font-size: 26px; font-weight: 500; color: var(--text); margin: 2px 0 1px; line-height: 1; }
+  .metric .sub { font-size: 11px; color: var(--text-muted); }
+
+  /* Highlight row */
+  .highlight-row {
+    background: var(--surface2);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 13px;
+    margin-top: 10px;
+  }
+  .highlight-row .key { color: var(--text-muted); }
+  .highlight-row .val { font-weight: 500; }
+
+  /* Slider */
+  .slider-wrap { margin-bottom: 20px; }
+  .slider-label { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 8px; }
+  .slider-label .key { color: var(--text-muted); }
+  .slider-label .val { font-weight: 500; font-family: 'DM Mono', monospace; }
+
+  input[type=range] {
+    -webkit-appearance: none; appearance: none;
+    width: 100%; height: 4px;
+    background: var(--border-strong); border-radius: 2px; outline: none;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: var(--accent); cursor: pointer;
+    border: 2px solid #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    transition: transform 0.1s;
+  }
+  input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+  .slider-ticks { display: flex; justify-content: space-between; font-size: 10px; color: var(--text-faint); margin-top: 4px; }
+
+  /* Country rows */
+  .country-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .country-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .country-name { flex: 1; font-weight: 400; }
+  .pill {
+    font-size: 11px; color: var(--text-faint);
+    background: var(--surface2); border-radius: 99px;
+    padding: 2px 10px; font-family: 'DM Mono', monospace;
+  }
+
+  /* Timeline */
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .tl-item { display: flex; gap: 16px; position: relative; padding-bottom: 18px; }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-left { display: flex; flex-direction: column; align-items: center; width: 16px; flex-shrink: 0; }
+  .tl-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+  .tl-line { width: 1px; flex: 1; background: var(--border-strong); margin-top: 4px; }
+  .tl-item:last-child .tl-line { display: none; }
+  .tl-date { font-size: 13px; font-weight: 500; margin-bottom: 2px; }
+  .tl-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
+  .dot-blue   { background: #185FA5; }
+  .dot-green  { background: #3B6D11; }
+  .dot-amber  { background: #BA7517; }
+  .dot-red    { background: #D85A30; }
+
+  /* Check list */
+  .checklist { display: flex; flex-direction: column; gap: 8px; }
+  .check-item { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--text-muted); }
+  .check-icon { color: var(--green); font-size: 14px; margin-top: 1px; flex-shrink: 0; }
+
+  /* VS table */
+  .vs-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .vs-table th {
+    font-size: 11px; font-weight: 500; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--text-faint);
+    padding: 8px 12px; text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .vs-table th:not(:first-child) { text-align: center; }
+  .vs-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+  .vs-table tr:last-child td { border-bottom: none; }
+  .vs-table td:first-child { color: var(--text); font-weight: 400; }
+  .vs-table td:not(:first-child) { text-align: center; }
+  .vs-table tr:hover td { background: var(--surface2); }
+  .check { color: var(--green); font-size: 15px; }
+  .cross { color: #A32D2D; font-size: 15px; }
+  .qitus-col { color: var(--accent) !important; font-weight: 500 !important; }
+  .price-tag {
+    display: inline-block;
+    background: var(--green-light); color: var(--green);
+    font-weight: 500; border-radius: var(--radius-sm);
+    padding: 2px 8px; font-size: 12px;
+  }
+
+  /* Section column layout */
+  .col-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .col-pair-label {
+    font-size: 12px; color: var(--text-muted); font-weight: 500;
+    margin-bottom: 10px; display: flex; align-items: center; gap: 6px;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center; margin-top: 60px; padding-top: 28px;
+    border-top: 1px solid var(--border);
+    font-size: 11px; color: var(--text-faint); line-height: 1.8;
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* Intro strip */
+  .intro {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    display: flex; align-items: center; gap: 20px;
+    box-shadow: var(--shadow);
+  }
+  .intro-text { flex: 1; }
+  .intro-title { font-size: 20px; font-weight: 500; margin-bottom: 4px; }
+  .intro-sub { font-size: 13px; color: var(--text-muted); }
+  .intro-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+
+  .divider { height: 1px; background: var(--border); margin: 14px 0; }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">Q</div>
+  <div>
+    <div class="header-title">QITUS™</div>
+    <div class="header-sub">Investor Briefing 2026</div>
+  </div>
+  <span class="confidential">Confidential</span>
+</header>
+
+<div class="container">
+
+  <div class="intro">
+    <div class="intro-text">
+      <div class="intro-title">QITUS™ — E-Invoicing Platform</div>
+      <div class="intro-sub">Turning the 2026 French legal mandate into a simple, enjoyable experience. €9.90/mo. No commitment. Built for Europe's 33M micro-businesses.</div>
+      <div class="intro-badges">
+        <span class="badge badge-green">MVP Validated</span>
+        <span class="badge badge-blue">SuperPDP Sandbox ✓</span>
+        <span class="badge badge-accent">Sept. 1, 2026 Deadline</span>
+        <span class="badge badge-amber">ViDA Directive 2030</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showTab('market', this)">Market</button>
+    <button class="tab-btn" onclick="showTab('revenue', this)">Revenue</button>
+    <button class="tab-btn" onclick="showTab('roadmap', this)">Roadmap</button>
+    <button class="tab-btn" onclick="showTab('europe', this)">Europe</button>
+    <button class="tab-btn" onclick="showTab('positioning', this)">Positioning</button>
+    <button class="tab-btn" onclick="showTab('architecture', this)">Architecture</button>
+  </div>
+
+  <!-- MARKET -->
+  <div id="market" class="section active">
+    <div class="grid grid-4" style="margin-bottom:14px">
+      <div class="metric">
+        <div class="lbl">TAM France</div>
+        <div class="val">4M</div>
+        <div class="sub">companies</div>
+      </div>
+      <div class="metric">
+        <div class="lbl">TAM Europe</div>
+        <div class="val">33M</div>
+        <div class="sub">companies (ViDA 2030)</div>
+      </div>
+      <div class="metric">
+        <div class="lbl">Target CAC</div>
+        <div class="val">€50</div>
+        <div class="sub">per customer</div>
+      </div>
+      <div class="metric">
+        <div class="lbl">Subscription</div>
+        <div class="val">€9.90</div>
+        <div class="sub">excl. VAT / month</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">The captive market cascade</div>
+      <p style="font-size:13px; color:var(--text-muted); margin-bottom:12px;">
+        Qitus's real market isn't 4M isolated French companies — it's the hidden web of <strong style="color:var(--text)">30M B2B relationships</strong>. The moment a major client (Vinci, Orange, Bouygues) activates e-invoicing, it mechanically forces all 5,000+ of its subcontractors to follow. A micro-business plumber working for Bouygues cannot wait until 2027 — they need Qitus on Day 1 or risk losing the contract.
+      </p>
+      <div class="highlight-row">
+        <span class="key">B2B relationships impacted from Sept. 1, 2026</span>
+        <span class="val">+6,000,000</span>
+      </div>
+      <div class="highlight-row">
+        <span class="key">Large &amp; mid-sized companies triggering the cascade</span>
+        <span class="val">6,250</span>
+      </div>
+      <div class="highlight-row">
+        <span class="key">New EU enterprises registered every year</span>
+        <span class="val">2.5M+</span>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <div class="card-title">The two-stage legal pressure</div>
+      <div class="grid grid-2">
+        <div>
+          <div style="font-size:12px; font-weight:500; margin-bottom:8px; color:var(--accent)">September 1, 2026</div>
+          <p style="font-size:13px; color:var(--text-muted)">All large &amp; mid-sized companies must issue and receive e-invoices. <strong style="color:var(--text)">Every VAT-registered entity</strong> must be able to receive e-invoices — including micro-businesses.</p>
+        </div>
+        <div>
+          <div style="font-size:12px; font-weight:500; margin-bottom:8px; color:var(--blue)">September 1, 2027</div>
+          <p style="font-size:13px; color:var(--text-muted)">VSBs, SMEs, sole proprietors: mandatory e-invoicing issuance + e-reporting. Penalty: <strong style="color:var(--text)">€250/missing submission</strong>, capped at €45,000/year.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REVENUE -->
+  <div id="revenue" class="section">
+    <div class="card" style="margin-bottom:14px">
+      <div class="card-title">Scenario explorer</div>
+      <div class="slider-wrap">
+        <div class="slider-label">
+          <span class="key">Market share captured</span>
+          <span class="val" id="pct-out">2%</span>
+        </div>
+        <input type="range" min="1" max="5" step="1" value="2" id="pct-slider" oninput="updateRevenue(this.value)">
+        <div class="slider-ticks"><span>1%</span><span>2%</span><span>3%</span><span>4%</span><span>5%</span></div>
+      </div>
+
+      <div class="col-pair">
+        <div>
+          <div class="col-pair-label">🇫🇷 France — 4M companies</div>
+          <div class="metric" style="margin-bottom:8px">
+            <div class="lbl">Customers</div>
+            <div class="val" id="fr-clients">80,000</div>
+          </div>
+          <div class="metric" style="margin-bottom:8px">
+            <div class="lbl">Annual Recurring Revenue</div>
+            <div class="val" id="fr-arr">€9.5M</div>
+          </div>
+          <div class="metric" style="margin-bottom:8px">
+            <div class="lbl">Gross Margin (85%)</div>
+            <div class="val" id="fr-gm">€8.1M</div>
+          </div>
+          <div class="metric">
+            <div class="lbl">EBITDA (60%)</div>
+            <div class="val" id="fr-ebitda">€5.7M</div>
+          </div>
+        </div>
+        <div>
+          <div class="col-pair-label">🇪🇺 Europe — 33M companies</div>
+          <div class="metric" style="margin-bottom:8px">
+            <div class="lbl">Customers</div>
+            <div class="val" id="eu-clients">660,000</div>
+          </div>
+          <div class="metric" style="margin-bottom:8px">
+            <div class="lbl">Annual Recurring Revenue</div>
+            <div class="val" id="eu-arr">€78.4M</div>
+          </div>
+          <div class="metric" style="margin-bottom:8px">
+            <div class="lbl">Gross Margin (85%)</div>
+            <div class="val" id="eu-gm">€66.6M</div>
+          </div>
+          <div class="metric">
+            <div class="lbl">EBITDA (60%)</div>
+            <div class="val" id="eu-ebitda">€47M</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Financial model assumptions</div>
+      <div class="highlight-row"><span class="key">Gross margin</span><span class="val">85%</span></div>
+      <div class="highlight-row"><span class="key">EBITDA target</span><span class="val">60%</span></div>
+      <div class="highlight-row"><span class="key">Customer Acquisition Cost (CAC)</span><span class="val">€50</span></div>
+      <div class="highlight-row"><span class="key">Initial investment allocation</span><span class="val">85% CAC · 15% DevOps/SecOps</span></div>
+      <div class="highlight-row"><span class="key">Self-financing from</span><span class="val">Year 2 — no further dilution</span></div>
+    </div>
+  </div>
+
+  <!-- ROADMAP -->
+  <div id="roadmap" class="section">
+    <div class="card" style="margin-bottom:14px">
+      <div class="card-title">2026 launch milestones</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot dot-blue"></div><div class="tl-line"></div></div>
+          <div>
+            <div class="tl-date">June / July 2026 — Security &amp; Industrialization</div>
+            <div class="tl-desc">Production infrastructure deployed on sovereign French servers (AWS/OVH). DevOps/SecOps freelance experts onboarded. Final UI polish in Qitus brand colors.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot dot-green"></div><div class="tl-line"></div></div>
+          <div>
+            <div class="tl-date">July 2026 — Open Beta</div>
+            <div class="tl-desc">Platform early release. Live API testing with the government portal (PPF). Landing page live. First pre-registrations open.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot dot-amber"></div><div class="tl-line"></div></div>
+          <div>
+            <div class="tl-date">August 2026 — Go-To-Market ("Zero Stress" campaign)</div>
+            <div class="tl-desc">Official commercial launch. Massive freelancer acquisition during summer. Promise: "E-invoicing &amp; e-reporting in two clicks."</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot dot-red"></div><div class="tl-line"></div></div>
+          <div>
+            <div class="tl-date">September 1, 2026 — Legal Deadline</div>
+            <div class="tl-desc">All French companies legally required to accept electronic invoices. Qitus enters this historic milestone already live in production with an active subscriber base.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">What is already 100% operational</div>
+      <div class="checklist">
+        <div class="check-item"><span class="check-icon">✓</span><span>Full workflow management — customer invoices, vendor invoices, credit memos, receipts, accounting export</span></div>
+        <div class="check-item"><span class="check-icon">✓</span><span>All business logic and platform architecture</span></div>
+        <div class="check-item"><span class="check-icon">✓</span><span>AI OCR Hub — self-learning optical character recognition for legacy documents, receipts, and supplier PDFs</span></div>
+        <div class="check-item"><span class="check-icon">✓</span><span>Dashboard &amp; real-time revenue tracking</span></div>
+        <div class="check-item"><span class="check-icon">✓</span><span>FEC accounting export (DGFiP-compliant)</span></div>
+        <div class="check-item"><span class="check-icon">✓</span><span>SuperPDP sandbox validated — JSON payloads compliant with EN16931, accepted end-to-end</span></div>
+        <div class="check-item"><span class="check-icon">✓</span><span>E-reporting page ready — activate when SuperPDP opens the API (Sept. 2027)</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EUROPE -->
+  <div id="europe" class="section">
+    <div class="card" style="margin-bottom:14px">
+      <div class="card-title">E-invoicing mandates — country by country</div>
+      <div class="country-row"><span style="font-size:17px">🇮🇹</span><span class="country-name">Italy</span><span class="badge badge-green">Live since 2019</span><span class="pill">SdI</span></div>
+      <div class="country-row"><span style="font-size:17px">🇧🇪</span><span class="country-name">Belgium</span><span class="badge badge-green">Live Jan. 2026</span><span class="pill">EN16931 native ✓</span></div>
+      <div class="country-row"><span style="font-size:17px">🇷🇴</span><span class="country-name">Romania</span><span class="badge badge-green">Live Jul. 2024</span><span class="pill">RO e-Factura</span></div>
+      <div class="country-row"><span style="font-size:17px">🇭🇺</span><span class="country-name">Hungary</span><span class="badge badge-green">Live (RTIR)</span><span class="pill">Real-time</span></div>
+      <div class="country-row"><span style="font-size:17px">🇵🇱</span><span class="country-name">Poland</span><span class="badge badge-amber">Rollout Feb.–Apr. 2026</span><span class="pill">KSeF</span></div>
+      <div class="country-row"><span style="font-size:17px">🇭🇷</span><span class="country-name">Croatia</span><span class="badge badge-amber">Rollout Jan. 2026</span><span class="pill">Fiscalization 2.0</span></div>
+      <div class="country-row"><span style="font-size:17px">🇬🇷</span><span class="country-name">Greece</span><span class="badge badge-amber">Enforcement Q1 2026</span><span class="pill">myDATA</span></div>
+      <div class="country-row"><span style="font-size:17px">🇩🇪</span><span class="country-name">Germany</span><span class="badge badge-blue">2027–2028</span><span class="pill">ZUGFeRD / Factur-X ✓</span></div>
+      <div class="country-row"><span style="font-size:17px">🇪🇸</span><span class="country-name">Spain</span><span class="badge badge-blue">Legislation pending</span><span class="pill">Multi-platform</span></div>
+      <div class="country-row"><span style="font-size:17px">🇫🇷</span><span class="country-name">France</span><span class="badge badge-accent">Sept. 2026 / 2027</span><span class="pill">PPF · PDP · OD</span></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Qitus's architectural advantage for European expansion</div>
+      <p style="font-size:13px; color:var(--text-muted); margin-bottom:12px;">
+        Because Qitus's backend database natively speaks <strong style="color:var(--text)">EN16931</strong> — the universal European semantic standard — expanding to a new country requires <strong style="color:var(--text)">zero structural redesign</strong>. We simply connect to a certified regional Super PDP API partner. Operational cost to enter a new European jurisdiction: near zero.
+      </p>
+      <div class="highlight-row"><span class="key">Standard used</span><span class="val">EN16931 (EU mandate)</span></div>
+      <div class="highlight-row"><span class="key">Network routing</span><span class="val">PEPPOL 4-corner model</span></div>
+      <div class="highlight-row"><span class="key">ViDA Directive horizon</span><span class="val">33M businesses by 2030</span></div>
+    </div>
+  </div>
+
+  <!-- POSITIONING -->
+  <div id="positioning" class="section">
+    <div class="card" style="margin-bottom:14px; overflow-x:auto;">
+      <div class="card-title">Competitive analysis — France (~70–100 serious PDP/OD players)</div>
+      <table class="vs-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th style="color:var(--accent)">QITUS</th>
+            <th>Freemium<br>(Indy, Abby…)</th>
+            <th>Giants<br>(Pennylane, Cegid…)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Advertised price</td>
+            <td class="qitus-col"><span class="price-tag">€9.90 / mo.</span></td>
+            <td>€0 (freemium bait)</td>
+            <td>€30–60 / mo.</td>
+          </tr>
+          <tr>
+            <td>Real SMB cost</td>
+            <td class="qitus-col">€9.90 all-inclusive</td>
+            <td>€22–49 in practice</td>
+            <td>€360–720 / yr + fees</td>
+          </tr>
+          <tr>
+            <td>No commitment</td>
+            <td><span class="check">✓</span></td>
+            <td><span class="cross">✗</span></td>
+            <td><span class="cross">✗</span></td>
+          </tr>
+          <tr>
+            <td>AI OCR included</td>
+            <td class="qitus-col">Unlimited</td>
+            <td>Volume-capped</td>
+            <td>Paid add-on</td>
+          </tr>
+          <tr>
+            <td>Unlimited invoices</td>
+            <td><span class="check">✓</span></td>
+            <td>Max 10 / mo.</td>
+            <td><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>VAT declaration</td>
+            <td class="qitus-col">Included (pre-filled)</td>
+            <td>Paid upgrade</td>
+            <td>Justifies pricing</td>
+          </tr>
+          <tr>
+            <td>PDP certification</td>
+            <td class="qitus-col">OD via API (zero CapEx)</td>
+            <td><span class="cross">✗</span></td>
+            <td>Multi-million CapEx</td>
+          </tr>
+          <tr>
+            <td>European scalability</td>
+            <td class="qitus-col">Native EN16931</td>
+            <td>FR-only</td>
+            <td>Legacy monolith</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title">The sweet spot</div>
+      <p style="font-size:13px; color:var(--text-muted);">
+        Qitus targets the 4M French micro-businesses (SASU, SARL, SAS, EURLs, sole traders) where the owner handles invoicing themselves. They reject the freemium trap and refuse to overpay for enterprise software they'll use at 10% capacity. Qitus's fixed €9.90 price — no volume caps, no hidden fees, full compliance — is the market's <strong style="color:var(--text)">impulse buy</strong>: the no-brainer decision that maximises acquisition while securing industry-leading retention.
+      </p>
+    </div>
+  </div>
+
+  <!-- ARCHITECTURE -->
+  <div id="architecture" class="section">
+    <div class="card" style="margin-bottom:14px">
+      <div class="card-title">Why the OD/SC model beats the PDP model</div>
+      <div class="grid grid-2">
+        <div>
+          <div style="font-size:12px; font-weight:500; color:var(--text-muted); margin-bottom:10px; text-transform:uppercase; letter-spacing:0.05em;">PDP (certified platform)</div>
+          <div class="checklist">
+            <div class="check-item"><span style="color:#A32D2D; font-size:14px">✗</span><span>Millions in certification costs</span></div>
+            <div class="check-item"><span style="color:#A32D2D; font-size:14px">✗</span><span>Sovereign cloud infrastructure required (SecNumCloud)</span></div>
+            <div class="check-item"><span style="color:#A32D2D; font-size:14px">✗</span><span>Continuous penetration testing</span></div>
+            <div class="check-item"><span style="color:#A32D2D; font-size:14px">✗</span><span>Heavy liability insurance</span></div>
+            <div class="check-item"><span style="color:#A32D2D; font-size:14px">✗</span><span>Months of government audits per country</span></div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:12px; font-weight:500; color:var(--accent); margin-bottom:10px; text-transform:uppercase; letter-spacing:0.05em;">Qitus OD/SC model</div>
+          <div class="checklist">
+            <div class="check-item"><span class="check-icon">✓</span><span>Zero certification CapEx</span></div>
+            <div class="check-item"><span class="check-icon">✓</span><span>Plug-and-play via Super PDP API</span></div>
+            <div class="check-item"><span class="check-icon">✓</span><span>New country = new API connection only</span></div>
+            <div class="check-item"><span class="check-icon">✓</span><span>100% focus on UX, AI, and business intelligence</span></div>
+            <div class="check-item"><span class="check-icon">✓</span><span>Asset-light, infinitely scalable</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:14px">
+      <div class="card-title">Technical stack</div>
+      <div class="highlight-row"><span class="key">Database</span><span class="val">Supabase (PostgreSQL) · TypeScript Edge Functions</span></div>
+      <div class="highlight-row"><span class="key">Invoice standard</span><span class="val">EN16931 JSON schema (native)</span></div>
+      <div class="highlight-row"><span class="key">File format</span><span class="val">Factur-X (PDF + embedded XML)</span></div>
+      <div class="highlight-row"><span class="key">Network routing</span><span class="val">PEPPOL BIS 3.0 · 4-corner model</span></div>
+      <div class="highlight-row"><span class="key">Compliance bridge</span><span class="val">Certified Super PDP via secure API gateway</span></div>
+      <div class="highlight-row"><span class="key">Infrastructure</span><span class="val">AWS / OVH (French sovereign cloud)</span></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Sandbox validation — what it proves</div>
+      <p style="font-size:13px; color:var(--text-muted); margin-bottom:12px;">
+        The SuperPDP sandbox runs the same validation engines as the production environment. A successful end-to-end test means our JSON payloads are semantically compliant with EN16931 (a single missing field would trigger an API rejection), the Factur-X structure is readable by the PPF and any accounting software in France, and the tax engine has already been accepted by the government's own APIs.
+      </p>
+      <div class="highlight-row" style="background:var(--green-light)">
+        <span style="font-size:13px; color:var(--green); font-weight:500;">Sandbox success = legal validation. This is not a design mockup — it is a production-ready tax engine.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>QITUS™ — Investor Briefing 2026 · Confidential</p>
+    <p>© 2026 Olivier Sandberg – QITUS™ (INPI No. 5254979)</p>
+    <p>Unauthorized reproduction and distribution prohibited.</p>
+  </div>
+
+</div>
+
+<script>
+const frData = {
+  1: {clients:'40,000', arr:'€4.7M', gm:'€4.0M', ebitda:'€2.9M'},
+  2: {clients:'80,000', arr:'€9.5M', gm:'€8.1M', ebitda:'€5.7M'},
+  3: {clients:'120,000', arr:'€14.3M', gm:'€12.1M', ebitda:'€8.6M'},
+  4: {clients:'160,000', arr:'€19.0M', gm:'€16.2M', ebitda:'€11.4M'},
+  5: {clients:'200,000', arr:'€23.8M', gm:'€20.2M', ebitda:'€14.3M'}
+};
+const euData = {
+  1: {clients:'330,000', arr:'€39.2M', gm:'€33.3M', ebitda:'€23.5M'},
+  2: {clients:'660,000', arr:'€78.4M', gm:'€66.6M', ebitda:'€47.0M'},
+  3: {clients:'990,000', arr:'€117.6M', gm:'€100.0M', ebitda:'€70.6M'},
+  4: {clients:'1,320,000', arr:'€156.8M', gm:'€133.3M', ebitda:'€94.1M'},
+  5: {clients:'1,650,000', arr:'€196.0M', gm:'€166.6M', ebitda:'€117.6M'}
+};
+
+function updateRevenue(v) {
+  v = parseInt(v);
+  document.getElementById('pct-out').textContent = v + '%';
+  const fr = frData[v], eu = euData[v];
+  document.getElementById('fr-clients').textContent = fr.clients;
+  document.getElementById('fr-arr').textContent = fr.arr;
+  document.getElementById('fr-gm').textContent = fr.gm;
+  document.getElementById('fr-ebitda').textContent = fr.ebitda;
+  document.getElementById('eu-clients').textContent = eu.clients;
+  document.getElementById('eu-arr').textContent = eu.arr;
+  document.getElementById('eu-gm').textContent = eu.gm;
+  document.getElementById('eu-ebitda').textContent = eu.ebitda;
+}
+
+function showTab(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
